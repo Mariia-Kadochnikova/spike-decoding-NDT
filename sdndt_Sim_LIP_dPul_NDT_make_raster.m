@@ -121,14 +121,13 @@ for u = 1:num_units
     %raster_site_info.unit_ID = population(u).unit_ID;
     raster_site_info.block_unit = population(u).block_unit;
 
-    
     raster_data = raster_data(~isnan(raster_data(:, 1)), :); % Remove NaN rows (trials with success == 0) from raster_data
     raster_labels.condition = raster_labels.condition(~cellfun('isempty', raster_labels.condition)); % Remove empty cells (trials with success == 0) from raster_data
     raster_labels.stimulus_side = raster_labels.stimulus_side(~cellfun('isempty', raster_labels.stimulus_side));
     raster_labels.stimulus_position_X_coordinate = raster_labels.stimulus_position_X_coordinate(~cellfun('isempty', raster_labels.stimulus_position_X_coordinate));
     raster_labels.stimulus_position_Y_coordinate = raster_labels.stimulus_position_Y_coordinate(~cellfun('isempty', raster_labels.stimulus_position_Y_coordinate));
     
-    
+   
     filename = [OUTPUT_PATH_raster population(u).unit_ID '_trial_state_' target_state_name_char '.mat'];
     save(filename,'raster_data', 'raster_labels', 'raster_site_info')
 end
