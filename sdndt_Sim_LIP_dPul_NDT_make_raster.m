@@ -110,7 +110,7 @@ for u = 1:num_units
 %             break;
 %         end
 %     end 
-%     
+
 %     
 %     raster_site_info = struct('unit_ID', {}); % Initialize raster_site_info structure
 %      for i = 1:numel(population)% Extract the last two characters from each unit_ID and store in raster_site_info
