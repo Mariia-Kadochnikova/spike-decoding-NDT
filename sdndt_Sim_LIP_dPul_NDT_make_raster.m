@@ -36,9 +36,9 @@ for u = 1:num_units
     num_trial = size (population(u).trial, 2 );
     
     % Initialize cell arrays
-    raster_labels.stimulus_ID = cell(1, num_trial);
+    raster_labels.condition = cell(1, num_trial);
     raster_labels.stimulus_side = cell(1, num_trial);
-    raster_labels.stimulus_position = cell(1, num_trial);
+    %raster_labels.stimulus_position = cell(1, num_trial);
     raster_labels.stimulus_position_X_coordinate = cell(1, num_trial);
     raster_labels.stimulus_position_X_coordinate = cell(1, num_trial);
     
@@ -64,7 +64,7 @@ for u = 1:num_units
         
         
         %%% raster_labels
-        raster_labels.stimulus_ID {1, t} = population(u).trial(t).choice;
+        raster_labels.condition {1, t} = population(u).trial(t).choice;
         if real(population(u).trial(t).tar_pos) > 0 % Convert positive values to 'R' and negative values to 'L'
             raster_labels.stimulus_side{1, t} = 'R';
         else
@@ -75,6 +75,8 @@ for u = 1:num_units
         Y_coordinate = imag(population(u).trial(t).tar_pos);
         raster_labels.stimulus_position_X_coordinate{1, t} = X_coordinate;
         raster_labels.stimulus_position_Y_coordinate{1, t} = Y_coordinate;
+        
+        
         
  
         
@@ -121,7 +123,7 @@ for u = 1:num_units
 
     
     raster_data = raster_data(~isnan(raster_data(:, 1)), :); % Remove NaN rows (trials with success == 0) from raster_data
-    raster_labels.stimulus_ID = raster_labels.stimulus_ID(~cellfun('isempty', raster_labels.stimulus_ID)); % Remove empty cells (trials with success == 0) from raster_data
+    raster_labels.condition = raster_labels.condition(~cellfun('isempty', raster_labels.condition)); % Remove empty cells (trials with success == 0) from raster_data
     raster_labels.stimulus_side = raster_labels.stimulus_side(~cellfun('isempty', raster_labels.stimulus_side));
     raster_labels.stimulus_position_X_coordinate = raster_labels.stimulus_position_X_coordinate(~cellfun('isempty', raster_labels.stimulus_position_X_coordinate));
     raster_labels.stimulus_position_Y_coordinate = raster_labels.stimulus_position_Y_coordinate(~cellfun('isempty', raster_labels.stimulus_position_Y_coordinate));
